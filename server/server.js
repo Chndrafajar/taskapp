@@ -13,7 +13,7 @@ const notedb = require('./model/notesModel');
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://taskapp-app.vercel.app',
     methods: 'GET,POST,PUT,DELETE',
     credentials: true,
   })
@@ -79,8 +79,8 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect: 'http://localhost:5173/notes',
-    failureRedirect: 'http://localhost:5173/login',
+    successRedirect: 'https://taskapp-app.vercel.app/notes',
+    failureRedirect: 'https://taskapp-app.vercel.app/login',
   })
 );
 
@@ -111,7 +111,7 @@ app.get('/logout', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect('http://localhost:5173/login');
+    res.redirect('https://taskapp-app.vercel.app/login');
   });
 });
 
