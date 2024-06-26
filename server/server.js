@@ -11,9 +11,6 @@ const userdb = require('./model/userModel');
 const projectdb = require('./model/projectModel');
 const notedb = require('./model/notesModel');
 
-const clientid = process.env.CLIENTID;
-const clientsecret = process.env.CLIENSECRET;
-
 app.use(
   cors({
     origin: 'http://localhost:5173',
@@ -41,8 +38,8 @@ app.use(passport.session());
 passport.use(
   new OAuth2Strategy(
     {
-      clientID: clientid,
-      clientSecret: clientsecret,
+      clientID: process.env.CLIENTID,
+      clientSecret: process.env.CLIENSECRET,
       callbackURL: '/auth/google/callback',
       scope: ['profile', 'email'],
     },
