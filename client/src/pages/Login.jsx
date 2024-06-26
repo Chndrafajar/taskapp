@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Login() {
   const loginWithGoogle = () => {
-    window.open('http://localhost:8080/auth/google/callback', '_self');
+    window.open('https://taskapp-api.vercel.app/auth/google/callback', '_self');
   };
 
   return (

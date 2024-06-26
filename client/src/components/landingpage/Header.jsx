@@ -17,7 +17,7 @@ export default function Header() {
 
   //logout
   const logout = () => {
-    window.open('http://localhost:8080/logout', '_self');
+    window.open('https://taskapp-api.vercel.app/logout', '_self');
   };
 
   useEffect(() => {
