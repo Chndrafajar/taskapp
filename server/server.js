@@ -11,8 +11,8 @@ const userdb = require('./model/userModel');
 const projectdb = require('./model/projectModel');
 const notedb = require('./model/notesModel');
 
-const clientid = '626637452752-vklebn4mpmvk37q8aldioh9k9ne3mt5j.apps.googleusercontent.com';
-const clientsecret = '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';
+const clientid = process.env.CLIENTID;
+const clientsecret = process.env.CLIENSECRET;
 
 app.use(
   cors({
