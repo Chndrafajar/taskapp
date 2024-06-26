@@ -40,7 +40,7 @@ passport.use(
     {
       clientID: process.env.CLIENTID,
       clientSecret: process.env.CLIENSECRET,
-      callbackURL: '/auth/google/callback',
+      callbackURL: 'https://taskapp-api.vercel.app/auth/google/callback',
       scope: ['profile', 'email'],
     },
     async (accessToken, refreshToken, profile, done) => {
@@ -74,10 +74,10 @@ passport.deserializeUser((user, done) => {
 });
 
 //initial google auth login
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('https://taskapp-api.vercel.app/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get(
-  '/auth/google/callback',
+  'https://taskapp-api.vercel.app/auth/google/callback',
   passport.authenticate('google', {
     successRedirect: 'https://taskapp-app.vercel.app/notes',
     failureRedirect: 'https://taskapp-app.vercel.app/login',
