@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 require('./db/conn');
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const session = require('express-session');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-google-oauth2').Strategy;
@@ -40,7 +40,7 @@ passport.use(
     {
       clientID: process.env.CLIENTID,
       clientSecret: process.env.CLIENSECRET,
-      callbackURL: 'https://taskapp-api.vercel.app/auth/google/callback',
+      callbackURL: process.env.CALLBACK_URL || 'https://taskapp-api.vercel.app/auth/google/callback',
       scope: ['profile', 'email'],
     },
     async (accessToken, refreshToken, profile, done) => {
