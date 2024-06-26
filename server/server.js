@@ -40,7 +40,7 @@ passport.use(
     {
       clientID: process.env.CLIENTID,
       clientSecret: process.env.CLIENSECRET,
-      callbackURL: 'https://taskapp-api.vercel.app/auth/google/callback',
+      callbackURL: '/auth/google/callback',
       scope: ['profile', 'email'],
     },
     async (accessToken, refreshToken, profile, done) => {
@@ -74,10 +74,10 @@ passport.deserializeUser((user, done) => {
 });
 
 //initial google auth login
-app.get('https://taskapp-api.vercel.app/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get(
-  'https://taskapp-api.vercel.app/auth/google/callback',
+  '/auth/google/callback',
   passport.authenticate('google', {
     successRedirect: 'https://taskapp-app.vercel.app/notes',
     failureRedirect: 'https://taskapp-app.vercel.app/login',
@@ -93,7 +93,7 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-app.get('https://taskapp-api.vercel.app/login/success', async (req, res) => {
+app.get('/login/success', async (req, res) => {
   if (req.user) {
     res.status(200).json({
       message: 'User Login Successfully',
@@ -106,7 +106,7 @@ app.get('https://taskapp-api.vercel.app/login/success', async (req, res) => {
   }
 });
 
-app.get('https://taskapp-api.vercel.app/logout', (req, res, next) => {
+app.get('/logout', (req, res, next) => {
   req.logout(function (err) {
     if (err) {
       return next(err);
