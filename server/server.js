@@ -40,7 +40,7 @@ passport.use(
     {
       clientID: process.env.CLIENTID,
       clientSecret: process.env.CLIENSECRET,
-      callbackURL: '/auth/google/callback',
+      callbackURL: 'https://taskapp-api.vercel.app/auth/google',
       scope: ['profile', 'email'],
     },
     async (accessToken, refreshToken, profile, done) => {
