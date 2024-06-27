@@ -27,6 +27,15 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
+      sameSite: 'none',
+      secure: true,
+    },
+    // store: new MongoStore({
+    //   mongooseConnection: mongoose.connection,
+    //   ttl: 14 * 24 * 60 * 60 // 14 days
+    // })
   })
 );
 
@@ -111,7 +120,13 @@ app.get('/logout', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect('https://taskapp-app.vercel.app/login');
+    req.session.destroy((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.clearCookie('connect.sid');
+      res.redirect('https://taskapp-app.vercel.app/login');
+    });
   });
 });
 
