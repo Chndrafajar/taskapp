@@ -79,7 +79,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect: 'https://taskapp-app.vercel.app/notes',
+    successRedirect: 'https://taskapp-app.vercel.app',
     failureRedirect: 'https://taskapp-app.vercel.app/login',
   })
 );

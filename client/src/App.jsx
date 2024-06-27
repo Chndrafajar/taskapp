@@ -30,11 +30,6 @@ function Layout() {
     getUser();
   }, []);
 
-  if (userData === null) {
-    // Masih memuat data pengguna
-    return <div>Loading...</div>;
-  }
-
   if (userData) {
     // Pengguna telah login, render halaman private
     return <Outlet />;
